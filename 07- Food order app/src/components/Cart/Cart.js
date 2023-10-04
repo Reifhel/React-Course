@@ -14,14 +14,16 @@ function Cart(props) {
   );
 
   return (
-    <Modal>
+    <Modal onClose={props.onHideCart}>
       {cartItems}
       <div className={styles.total}>
         <span>Valor Total</span>
         <span>00.00</span>
       </div>
       <div className={styles.actions}>
-        <button className={styles["button--alt"]}>Fechar</button>
+        <button className={styles["button--alt"]} onClick={props.onHideCart}>
+          Fechar
+        </button>
         <button className={styles.button}> Pedir </button>
       </div>
     </Modal>
