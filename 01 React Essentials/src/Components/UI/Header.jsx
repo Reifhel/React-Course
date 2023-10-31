@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Header.css";
 
-import reactImg from "../assets/react-core-concepts.png";
+import reactImg from "../../assets/react-core-concepts.png";
 
 const reactDescriptions = ["Fundamental", "Crucial", "Core"];
 
