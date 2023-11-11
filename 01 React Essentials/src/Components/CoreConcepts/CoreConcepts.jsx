@@ -1,14 +1,14 @@
 import React from "react";
 
 import { CORE_CONCEPTS } from "../../data";
+import Section from "../UI/Section";
 import CoreConcept from "./CoreConcept";
 
 import "./CoreConcept.css";
 
 function CoreConcepts() {
   return (
-    <section id="core-concepts">
-      <h2>Core Concepts</h2>
+    <Section id="core-concepts" title="Core Concepts">
       <ul>
         {CORE_CONCEPTS.map((item) => {
           return (
@@ -21,7 +21,7 @@ function CoreConcepts() {
           );
         })}
       </ul>
-    </section>
+    </Section>
   );
 }
 

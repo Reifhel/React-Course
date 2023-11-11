@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { EXAMPLES } from "../../data";
 import TabButton from "../TabButton";
+import Section from "../UI/Section";
 import ExampleItem from "./ExampleItem";
 
 import "./Examples.css";
@@ -15,8 +16,7 @@ function Examples() {
 
   return (
     <Fragment>
-      <section id="examples">
-        <h2>Examples</h2>
+      <Section id="examples" title="Examples">
         <menu>
           <TabButton onSelect={() => handleSelect("components")}>
             Components
@@ -25,7 +25,7 @@ function Examples() {
           <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
           <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
         </menu>
-      </section>
+      </Section>
       {!selectedTopic && <p> Please select a topic. </p>}
       {selectedTopic && (
         <ExampleItem
