@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "../index.css";
 
-function Player({ initialName, symbol, isActive }) {
+function Player({ initialName, symbol, isActive, onChangeName }) {
   const [userName, setUserName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
   const editHandler = () => {
     setIsEditing((editing) => !editing);
+
+    if (isEditing) {
+      onChangeName(symbol, userName);
+    }
   };
 
   const changeHandler = (event) => {
