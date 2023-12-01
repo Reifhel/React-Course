@@ -108,7 +108,7 @@ function App() {
           />
           <Player
             initialName={PLAYERS.O}
-            symbol="0"
+            symbol="O"
             isActive={currentPlayer === "O"}
             onChangeName={handlePlayerChange}
           />
