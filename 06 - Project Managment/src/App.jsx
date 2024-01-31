@@ -9,6 +9,7 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
 
   function handleStartAddProject() {
@@ -54,11 +55,59 @@ function App() {
     });
   }
 
+  function handleDeleteProject() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId
+        ),
+      };
+    });
+  }
+
+  function handleAddTasks(text) {
+    setProjectsState((prevState) => {
+      const taskID = Math.random();
+      const newTask = {
+        id: taskID,
+        projectID: prevState.selectedProjectId,
+        descricao: text,
+      };
+
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      };
+    });
+  }
+
+  function handleDeleteTasks(taskID) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.id !== taskID),
+      };
+    });
+  }
+
   const selectedProject = projectsState.projects.find(
     (project) => project.id === projectsState.selectedProjectId
   );
+  const selectedProjectTasks = projectsState.tasks.filter(
+    (task) => task.projectID === projectsState.selectedProjectId
+  );
 
-  let content = <SelectedProject project={selectedProject} />;
+  let content = (
+    <SelectedProject
+      project={selectedProject}
+      tasks={selectedProjectTasks}
+      onDelete={handleDeleteProject}
+      onAddTask={handleAddTasks}
+      onDeleteTask={handleDeleteTasks}
+    />
+  );
 
   if (projectsState.selectedProjectId === null) {
     content = (
@@ -74,7 +123,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
-        selectedProjectID={projectsState.selectedProjectID}
+        selectedProjectID={projectsState.selectedProjectId}
       />
       {content}
     </main>
